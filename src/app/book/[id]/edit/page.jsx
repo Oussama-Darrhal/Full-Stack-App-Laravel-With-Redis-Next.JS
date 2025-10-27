@@ -6,7 +6,7 @@ export default function EditBook({ params }) {
   const [book, setBook] = useState(null)
 
   useEffect(() => {
-    fetch(`/api/book/${params.id}`)
+    fetch(`/book/${params.id}`)
       .then(res => res.json())
       .then(setBook)
   }, [params.id])
@@ -15,7 +15,7 @@ export default function EditBook({ params }) {
     e.preventDefault()
     const formData = new FormData(e.target)
 
-    await fetch(`/api/book/${params.id}`, {
+    await fetch(`/book/${params.id}`, {
       method: 'PUT',
       body: formData,
     })

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getRedisClient } from "@/lib/redis";
+import DeleteBookButton from "./actions/DeleteBookButton";
 
 // Fetch books from Redis
 async function getBooks() {
@@ -76,7 +77,7 @@ export default async function Home() {
 
                   <div className="mt-4 flex gap-2">
                     <Link
-                      href={`/book/${book.id}`}
+                      href={`/book/${book.id}/view`}
                       className="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
                     >
                       View
@@ -87,18 +88,7 @@ export default async function Home() {
                     >
                       Edit
                     </Link>
-                    <form
-                      action={`/book/${book.id}/delete`}
-                      method="POST"
-                      className="ml-auto"
-                    >
-                      <button
-                        type="submit"
-                        className="text-red-500 hover:text-red-700 text-sm font-medium"
-                      >
-                        Delete
-                      </button>
-                    </form>
+                    <DeleteBookButton bookId={book.id} />
                   </div>
                 </div>
               </li>
