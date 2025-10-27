@@ -32,7 +32,7 @@ This project demonstrates CRUD operations, server-side rendering, and seamless i
 ---
 
 ## Project Structure
-
+```
 /my-project
 │
 ├── /frontend # Next.js app
@@ -45,7 +45,7 @@ This project demonstrates CRUD operations, server-side rendering, and seamless i
 │ ├── /routes/api.php # API routes
 │ ├── /config
 │ └── /database
-
+```
 ---
 
 ### API Endpoints
