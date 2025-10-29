@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessBookWordCount;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
@@ -55,6 +56,9 @@ class BookController extends Controller
 
         $book = Book::create($validated);
 
+        // Dispatch the word count processing job
+        ProcessBookWordCount::dispatch($book);
+
         // Invalidate cache
         Redis::del('books:all');
 
@@ -69,6 +73,9 @@ class BookController extends Controller
         }
 
         $book->update($request->only('title', 'author', 'rating', 'blurb'));
+
+        // Dispatch the word count processing job
+        ProcessBookWordCount::dispatch($book);
 
         // Update caches
         Redis::setex("book:$id", 600, $book->toJson());

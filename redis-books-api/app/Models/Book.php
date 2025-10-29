@@ -19,7 +19,8 @@ class Book extends Model
         'title',
         'author',
         'rating',
-        'blurb'
+        'blurb',
+        'word_count'
     ];
 
     protected static function boot()
